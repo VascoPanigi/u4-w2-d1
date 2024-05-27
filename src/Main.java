@@ -3,7 +3,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -62,7 +61,7 @@ public class Main {
                 logger.info("Happy gabibbo");
                 System.out.println(Arrays.toString(newArray));
 
-            } catch (InputMismatchException ex) {
+            } catch (NumberFormatException ex) {
                 logger.error("This is not a number!");
             }
         }
