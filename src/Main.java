@@ -36,8 +36,8 @@ public class Main {
         }
 
         System.out.println(Arrays.toString(newArray));
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-            Scanner scanner = new Scanner(System.in);
 
             try {
                 System.out.println("Choose a number. Type 0 to get the * out.");
@@ -64,9 +64,8 @@ public class Main {
 
             } catch (InputMismatchException ex) {
                 logger.error("This is not a number!");
-            } finally {
-                scanner.close();
             }
         }
+        scanner.close();
     }
 }
