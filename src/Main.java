@@ -1,7 +1,9 @@
+import exceptions.NumberMoreThan5Exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -36,26 +38,35 @@ public class Main {
         System.out.println(Arrays.toString(newArray));
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Choose a number. Type 0 to get the * out.");
-            int newNumber = Integer.parseInt(scanner.nextLine());
-            System.out.println("Choose its position.");
-            int numberPosition = Integer.parseInt(scanner.nextLine());
-            System.out.println("daje");
 
-            
-            if (newNumber != 0) {
+            try {
+                System.out.println("Choose a number. Type 0 to get the * out.");
+                int newNumber = Integer.parseInt(scanner.nextLine());
+
+                if (newNumber == 0) {
+                    logger.info("You got the * out");
+                    break;
+                }
+
+                System.out.println("Choose its position.");
+                int numberPosition = Integer.parseInt(scanner.nextLine());
+
+                if (numberPosition < 0 || numberPosition >= newArray.length) {
+                    throw new NumberMoreThan5Exception(numberPosition);
+                }
+
+                System.out.println("daje");
+
                 newArray[numberPosition] = newNumber;
                 System.out.println("There you go, happy now?");
                 logger.info("Happy gabibbo");
                 System.out.println(Arrays.toString(newArray));
-            } else {
-                logger.info("You got the * out");
-                break;
+
+            } catch (InputMismatchException ex) {
+                logger.error("This is not a number!");
+            } finally {
+                scanner.close();
             }
-
-
         }
-
-
     }
 }
